@@ -1,305 +1,305 @@
-aashley
-adaniel
-afz
-aharvey
-ahayes
-aidan
+aashley = Adam Ashley <aashley@php.net>
+adaniel = 
+afz = Ali Fazelzadeh <afz@php.net>
+aharvey = Adam Harvey <aharvey@php.net>
+ahayes = 
+aidan = Aidan Lister <aidan@php.net>
 alan_k = Alan Knowles <alan_k@php.net>
-alec
-alexios
-alexmerz
-amir
-amistry
-amos
-amt
-anant
-andrei
-antonio
-arash
-arnaud
-arpad
-ashiro
+alec = Aleksander Machniak <alec@php.net>
+alexios = 
+alexmerz = Alexander Merz <alexmerz@php.net>
+amir = Amir Mohammad Saied <amir@php.net>
+amistry = Anish Mistry <amistry@php.net>
+amos = 
+amt = 
+anant = Anant Narayanan <anant@php.net>
+andrei = Andrei Zmievski <andrei@php.net>
+antonio = 
+arash = Arash Hemmat <arash@php.net>
+arnaud = Arnaud Limbourg <arnaud@php.net>
+arpad = Arpad Ray <arpad@php.net>
+ashiro = Doug Bromley <ashiro@php.net>
 ashnazg = Chuck Burgess <ashnazg@php.net>
-asnagy
-atex
-avb
-aztek
-baba
-badams
-bastianonken
-bate
-ben
-beni = Benedikt Hallinger
-berdir
-bernd
-bjn
-bjoern
-bjori
-bmuskalla
-bolk
-brion
-busterb
-c01234
-c0il
-cain
-cbleek
-cbrunet
-cconstantine
-cellog
-chagenbu
-chief
-chregu
-chuck
-cipri
-clay
+asnagy = Andrew Nagy <asnagy@php.net>
+atex = Andrew Teixeira <atex@php.net>
+avb = Alexey Borzov <avb@php.net>
+aztek = 
+baba = 
+badams = 
+bastianonken = Bastian Onken <bastianonken@php.net>
+bate = Marco Kaiser <bate@php.net>
+ben = 
+beni = Benedikt Hallinger <beni@php.net>
+berdir = Sascha Grossenbacher <berdir@php.net>
+bernd = 
+bjn = 
+bjoern = 
+bjori = Hannes Magnusson <bjori@php.net>
+bmuskalla = 
+bolk = 
+brion = Brion Vibber <brion@php.net>
+busterb = 
+c01234 = Charles Woodcock <c01234@php.net>
+c0il = Vernet Loïc <c0il@php.net>
+cain = 
+cbleek = Carsten Bleek <cbleek@php.net>
+cbrunet = Charles Brunet <cbrunet@php.net>
+cconstantine = Craig Constantine <cconstantine@php.net>
+cellog = Greg Beaver <cellog@php.net>
+chagenbu = Chuck Hagenbuch <chagenbu@php.net>
+chief = 
+chregu = Christian Stocker <chregu@php.net>
+chuck = 
+cipri = Cipriano Groenendal <cipri@php.net>
+clay = 
 clockwerx = Daniel O'Connor <clockwerx@php.net>
-cmv
-cnb
-colder
-cox
-crafics
-cross
-cschmitz
-cvs2svn
+cmv = Colin Viebrock <cmv@php.net>
+cnb = 
+colder = Etienne Kneuss <colder@php.net>
+cox = 
+crafics = Manfred Weber <crafics@php.net>
+cross = 
+cschmitz = Carsten Schmitz <cschmitz@php.net>
+cvs2svn = 
 cweiske = Christian Weiske <cweiske@php.net>
-cyberscribe
+cyberscribe = Robert Peake <cyberscribe@php.net>
 cybot = Sebastian Mendel <cybot@php.net>
-dallen
-damian
-danielc
-darkelder
-datenpunk
-davey
-david
-davidc
-dbeu
-dbezborodov
-dbs
-delatbabel
-demrit
-denny
-derick
-dexter
-dickmann
-djg
-drewish
-dsp
-dufuz
-dviner
-edink
-ehlersd
-ekilfoil
-epte
+dallen = 
+damian = 
+danielc = Daniel Convissor <danielc@php.net>
+darkelder = Roberto Berto <darkelder@php.net>
+datenpunk = Daniel Khan <datenpunk@php.net>
+davey = 
+david = 
+davidc = David Coallier <davidc@php.net>
+dbeu = 
+dbezborodov = Damien Bezborodov <dbezborodov@php.net>
+dbs = Dan Scott <dbs@php.net>
+delatbabel = 
+demrit = Miguel Vazquez Gocobachi <demrit@php.net>
+denny = Denny Shimkoski <denny@php.net>
+derick = Derick Rethans <derick@php.net>
+dexter = 
+dickmann = 
+djg = 
+drewish = Andrew Morton <drewish@php.net>
+dsp = David Soria Parra <dsp@php.net>
+dufuz = Helgi Þormar Þorbjörnsson <dufuz@php.net>
+dviner = 
+edink = 
+ehlersd = 
+ekilfoil = 
+epte = 
 eru = Alexander Wirtz <eru@php.net>
-et
-fa
-fab
-farell
-fela
-felipernb
-firman
-floripa
-fmk
-fredericpoeydome
-gauthierm
-goetsch
-graeme
-gregorycu
-gschlossnagle
-guillaume
-gurugeek
-gwynne
-hayk
-heino
-helly
-herrwitten
-heyesr
-hfuecks
-hholzgra
-hirokawa
-hirose31
-hlellelid
-hm2k
-hschletz
-hudeldudel
-hugoki
-ieure
-ifeghali
-imajes
-instance
-irokez
-isaac
-itrebal
-iwarner
-izi
-jacques
-jakob
-jan
-jani
-janisto
-jasonlotito
-jausions
-jeichorn
-jellybob
-jespino
-jflemer
-jmcastagnetto
-johannes
-jon
-jpm
-jrust
-jschippers
-jstump
-justinpatrin
-jw
-jystewart
-kaltoft
-kei
-kguest
-khan
-kk
-kore
-kornel
-kouber
-kouichi66
-krausbn
-k.schroeder
-kuboa
-kwilms
-llucax
-lsmith
-lucamariano
-luckec
-lucor
-ludoo
-lukasfeiler
-mahono
-makler
-makoto
-mansion
-markonen
-matthias
-mbretter
-mccain
-meebey
-mehl
-mekras
-mfischer
-mfonda
-mic
-migurski
-mike
-mixtli
-mj
-mog
-mohrt
-moosh
-morse
-mroch
-mrook
-msaraujo
-mschuett
-mscifo
-msmarcal
-murahachibu
-mw21st
-nepto
-neufeind
-nicos
-nohn
-norro
-nosey
-nrf
-ohill
-olivier
-olivierg
-ordnas
-ortega
-ostborn
-padraic
-pajoye
-pce
-pfischer
-pgc
-phanto
-philip
-pmjones
-pollita
-polone
-pookey
-progi1984
-quipo
-rashid
-rasmus
-reywob
-richard
-richsage
-ritzmo
-rodrigosprimo
-rquadling
-ryansking
-sagi
-saltybeagle
-sander
-sas
-sbergmann
-schmidt
-schst
-scottmattocks
-sean
-sebastian
-sergiosgc
-shane
-shangxiao
-shimooka
-shin
-shomas
-shupp
-silospen
-sjr
-sklar
-slusarz
-sniper
+et = Stefan Walk <et@php.net>
+fa = Florian Anderiasch <fa@php.net>
+fab = Fabien MARTY <fab@php.net>
+farell = Laurent Laville <farell@php.net>
+fela = 
+felipernb = Felipe Ribeiro Nogueira Barbosa <felipernb@php.net>
+firman = Firman Wandayandi <firman@php.net>
+floripa = 
+fmk = 
+fredericpoeydome = Frederic Poeydomenge <fredericpoeydome@php.net>
+gauthierm = Michael Gauthier <gauthierm@php.net>
+goetsch = 
+graeme = 
+gregorycu = Gregory Currie <gregorycu@php.net>
+gschlossnagle = 
+guillaume = 
+gurugeek = 
+gwynne = Gwynne Raskind <gwynne@php.net>
+hayk = 
+heino = Heino H. Gehlsen <heino@php.net>
+helly = Marcus Boerger <helly@php.net>
+herrwitten = 
+heyesr = 
+hfuecks = Harry Fuecks <hfuecks@php.net>
+hholzgra = Hartmut Holzgraefe <hholzgra@php.net>
+hirokawa = Rui Hirokawa <hirokawa@php.net>
+hirose31 = HIROSE Masaaki <hirose31@php.net>
+hlellelid = Hans Lellelid <hlellelid@php.net>
+hm2k = James Wade <hm2k@php.net>
+hschletz = Holger Schletz <hschletz@php.net>
+hudeldudel = Sebastian Ebling <hudeldudel@php.net>
+hugoki = Elmar Pitschke <hugoki@php.net>
+ieure = Ian Eure <ieure@php.net>
+ifeghali = Igor Feghali <ifeghali@php.net>
+imajes = 
+instance = Alan Langford <instance@php.net>
+irokez = 
+isaac = Isaac Tewolde <isaac@php.net>
+itrebal = Graham Christensen <itrebal@php.net>
+iwarner = 
+izi = David JEAN LOUIS <izi@php.net>
+jacques = Jacques Marneweck <jacques@php.net>
+jakob = Jakob Westhoff <jakob@php.net>
+jan = 
+jani = Jani Taskinen <jani@php.net>
+janisto = Jani Mikkonen <janisto@php.net>
+jasonlotito = 
+jausions = Philippe Jausions <jausions@php.net>
+jeichorn = Joshua Eichorn <jeichorn@php.net>
+jellybob = 
+jespino = Jesús Espino García <jespino@php.net>
+jflemer = 
+jmcastagnetto = Jesus M. Castagnetto <jmcastagnetto@php.net>
+johannes = Johannes Schlüter <johannes@php.net>
+jon = Jon Parise <jon@php.net>
+jpm = 
+jrust = Jason Rust <jrust@php.net>
+jschippers = Jorrit Schippers <jschippers@php.net>
+jstump = Joe Stump <jstump@php.net>
+justinpatrin = Justin Patrin <justinpatrin@php.net>
+jw = 
+jystewart = James Stewart <jystewart@php.net>
+kaltoft = 
+kei = kei horikita <kei@php.net>
+kguest = Ken Guest <kguest@php.net>
+khan = Daniel Khan <khan@php.net>
+kk = 
+kore = 
+kornel = Kornel Lesinski <kornel@php.net>
+kouber = Kouber Saparev <kouber@php.net>
+kouichi66 = Kouichi Sakamoto <kouichi66@php.net>
+krausbn = 
+k.schroeder = 
+kuboa = KUBO Atsuhiro <kuboa@php.net>
+kwilms = Kurt Wilms <kwilms@php.net>
+llucax = 
+lsmith = Lukas Smith <lsmith@php.net>
+lucamariano = 
+luckec = Carsten Lucke <luckec@php.net>
+lucor = Luca Corbo <lucor@php.net>
+ludoo = 
+lukasfeiler = Lukas Feiler <lukasfeiler@php.net>
+mahono = 
+makler = 
+makoto = Makoto Tanaka <makoto@php.net>
+mansion = Bertrand Mansion <mansion@php.net>
+markonen = 
+matthias = 
+mbretter = Michael Bretterklieber <mbretter@php.net>
+mccain = 
+meebey = Mirco 'meebey' Bauer <meebey@php.net>
+mehl = 
+mekras = Mikhail Krasilnikov <mekras@php.net>
+mfischer = 
+mfonda = Matthew Fonda <mfonda@php.net>
+mic = Michele Tomaiuolo <mic@php.net>
+migurski = 
+mike = Michael Wallner <mike@php.net>
+mixtli = 
+mj = Martin Jansen <mj@php.net>
+mog = 
+mohrt = 
+moosh = Christophe Gesche <moosh@php.net>
+morse = David Morse <morse@php.net>
+mroch = 
+mrook = Michiel Rook <mrook@php.net>
+msaraujo = Marcelo Santos Araujo <msaraujo@php.net>
+mschuett = Martin Schütte <mschuett@php.net>
+mscifo = 
+msmarcal = 
+murahachibu = 
+mw21st = 
+nepto = 
+neufeind = Stefan Neufeind <neufeind@php.net>
+nicos = 
+nohn = Sebastian Nohn <nohn@php.net>
+norro = 
+nosey = Jesper Veggerby Hansen <nosey@php.net>
+nrf = Nathan Fredrickson <nrf@php.net>
+ohill = Olivier Hill <ohill@php.net>
+olivier = 
+olivierg = Olivier Guilyardi <olivierg@php.net>
+ordnas = 
+ortega = 
+ostborn = 
+padraic = Pádraic Brady <padraic@php.net>
+pajoye = Pierre-Alain Joye <pajoye@php.net>
+pce = Patrick C. Engel <pce@php.net>
+pfischer = Pablo Fischer <pfischer@php.net>
+pgc = 
+phanto = 
+philip = Philip Olson <philip@php.net>
+pmjones = Paul M Jones <pmjones@ciaweb.net>
+pollita = 
+polone = Patrick O'Lone <polone@php.net>
+pookey = 
+progi1984 = LEFEVRE Franck <progi1984@php.net>
+quipo = Lorenzo Alberton <quipo@php.net>
+rashid = 
+rasmus = Rasmus Lerdorf <rasmus@php.net>
+reywob = Peter Bowyer <reywob@php.net>
+richard = 
+richsage = Rich Sage <richsage@php.net>
+ritzmo = Moritz Venn <ritzmo@php.net>
+rodrigosprimo = Rodrigo Sampaio Primo <rodrigosprimo@php.net>
+rquadling = Richard Quadling <rquadling@php.net>
+ryansking = 
+sagi = 
+saltybeagle = Brett Bieber <saltybeagle@php.net>
+sander = 
+sas = 
+sbergmann = 
+schmidt = Christian Schmidt <schmidt@php.net>
+schst = Stephan Schmidt <schst@php.net>
+scottmattocks = 
+sean = 
+sebastian = Sebastian Bergmann <sebastian@php.net>
+sergiosgc = Sergio Carvalho <sergiosgc@php.net>
+shane = 
+shangxiao = David Sanders <shangxiao@php.net>
+shimooka = Hideyuki Shimooka <shimooka@php.net>
+shin = Shin Ohno <shin@php.net>
+shomas = 
+shupp = Bill Shupp <shupp@php.net>
+silospen = Simon Spencer <silospen@php.net>
+sjr = 
+sklar = 
+slusarz = 
+sniper = Jani Taskinen <sniper@php.net>
 squiz = Greg Sherwood <squiz@php.net>
-ssb
-ssttoo
-steinm
-stelianm
-sterling
-svenasse
-taak
-tacker
-tal
-tarjei
-techtonik
-terrafrost
-tetsuya
-thesaur
-thesee
-ths
-tias
-till
-timj
-timmyg
-toby
-toggg
-troehr
-tstarling
-ttsuruoka
-tuupola
-urs
-uw
-vblavet
-videinfra
-vincentlascaux
-walter
-wenz
-wiesemann
-wormus
-wudicgi
-xnoguer
-xolphin
-yavo
-yunosh
-zimt
-zyprexia
+ssb = 
+ssttoo = Stoyan Stefanov <ssttoo@php.net>
+steinm = Uwe Steinmann <steinm@php.net>
+stelianm = Setlian Mocanita <stelianm@php.net>
+sterling = 
+svenasse = 
+taak = Nicholas Pisarro <taak@php.net>
+tacker = Markus Tacker <tacker@php.net>
+tal = 
+tarjei = 
+techtonik = anatoly techtonik <techtonik@php.net>
+terrafrost = Jim Wigginton <terrafrost@php.net>
+tetsuya = Tetsuya Nakase <tetsuya@php.net>
+thesaur = Klaus Guenther <thesaur@php.net>
+thesee = Giuseppe Dess� <thesee@php.net>
+ths = 
+tias = (mat) Tias Guns <tias@php.net>
+till = Till Klampaeckel <till@php.net>
+timj = Tim Jackson <timj@php.net>
+timmyg = 
+toby = Tobias Schlitt <toby@php.net>
+toggg = bertrand Gugger <toggg@php.net>
+troehr = Torsten Roehr <troehr@php.net>
+tstarling = Tim Starling <tstarling@php.net>
+ttsuruoka = Tatsuya Tsuruoka <ttsuruoka@php.net>
+tuupola = Mika Tuupola <tuupola@php.net>
+urs = 
+uw = 
+vblavet = 
+videinfra = Roman Roan <videinfra@php.net>
+vincentlascaux = 
+walter = Walter Hop <walter@php.net>
+wenz = Christian Wenz <wenz@php.net>
+wiesemann = Mark Wiesemann <wiesemann@php.net>
+wormus = Aaron <wormus@php.net>
+wudicgi = Wudi Liu <wudicgi@php.net>
+xnoguer = 
+xolphin = 
+yavo = 
+yunosh = Jan Schneider <yunosh@php.net>
+zimt = 
+zyprexia = 
