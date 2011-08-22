@@ -4,7 +4,7 @@ afz
 aharvey
 ahayes
 aidan
-alan_k
+alan_k = Alan Knowles <alan_k@php.net>
 alec
 alexios
 alexmerz
@@ -19,7 +19,7 @@ arash
 arnaud
 arpad
 ashiro
-ashnazg
+ashnazg = Chuck Burgess <ashnazg@php.net>
 asnagy
 atex
 avb
@@ -29,7 +29,7 @@ badams
 bastianonken
 bate
 ben
-beni
+beni = Benedikt Hallinger
 berdir
 bernd
 bjn
@@ -52,7 +52,7 @@ chregu
 chuck
 cipri
 clay
-clockwerx
+clockwerx = Daniel O'Connor <clockwerx@php.net>
 cmv
 cnb
 colder
@@ -61,9 +61,9 @@ crafics
 cross
 cschmitz
 cvs2svn
-cweiske
+cweiske = Christian Weiske <cweiske@php.net>
 cyberscribe
-cybot
+cybot = Sebastian Mendel <cybot@php.net>
 dallen
 damian
 danielc
@@ -90,7 +90,7 @@ edink
 ehlersd
 ekilfoil
 epte
-eru
+eru = Alexander Wirtz <eru@php.net>
 et
 fa
 fab
@@ -260,7 +260,7 @@ sjr
 sklar
 slusarz
 sniper
-squiz
+squiz = Greg Sherwood <squiz@php.net>
 ssb
 ssttoo
 steinm
