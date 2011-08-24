@@ -19,6 +19,11 @@ cd $package
 git svn rebase
 git remote add origin git@github.com:pear/$package.git
 echo "Visit https://github.com/pear/$package now"
-echo "or create it at https://github.com/organizations/pear/repositories/new"
+echo "or create it at"
+echo " https://github.com/organizations/pear/repositories/new"
 echo "then run"
-echo "$ git push -u origin master"
+echo " $ git push -u origin master"
+echo ""
+echo "When all went fine, remove it from svn:"
+echo " svn rm https://svn.php.net/repository/pear/packages/$package -m '$package moved to https://github.com/pear/$package'"
+echo " svn propedit svn:externals https://svn.php.net/repository/pear/packages-all"
