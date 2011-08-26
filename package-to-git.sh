@@ -32,6 +32,28 @@ else
     git remote add origin git@github.com:pear/$package.git
 fi 
 
+touch README
+echo "This package is http://pear.php.net/package/$package and has been migrated from http://svn.php.net/repository/pear/packages/$package" >> README
+echo "" >> README
+echo "Please report all new issues via the PEAR bug tracker." >> README
+echo "" >> README
+echo "If this package is marked as unmaintained and you have fixes, please submit your pull requests and start discussion on the pear-qa mailing list." >> README
+echo "" >> README
+echo "To test, run either" >> README
+echo "$ phpunit tests/" >> README
+echo "Or" >> README
+echo "$ pear run-tests -r" >> README
+echo "" >> README
+echo "To build, simply" >> README
+echo "$ pear package" >> README
+echo "To install from scratch" >> README
+echo "$ pear install package.xml" >> README
+echo "To upgrade" >> README
+echo "$ pear upgrade -f package.xml" >> README
+
+git add README
+git commit -m "Added README template for $package."
+
 echo "Visit https://github.com/pear/$package now"
 echo "or create it at"
 echo " https://github.com/organizations/pear/repositories/new"
