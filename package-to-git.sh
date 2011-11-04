@@ -1,4 +1,5 @@
-#!/bin/sh
+#! /bin/bash
+
 # move a PEAR package to github
 if [ -z "$1" ]; then
     echo "Usage: ./package-to-git.sh package [username]"
