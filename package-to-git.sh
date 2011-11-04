@@ -1,10 +1,14 @@
 #! /bin/bash
 
-# move a PEAR package to github
 if [ -z "$1" ]; then
-    echo "Usage: ./package-to-git.sh package [username]"
-    echo "	- package must be a valid PEAR package hosted in PEAR SVN"
-    echo "	- username only needs to be specified to utilise the https:// style of github interaction"
+    echo "Prepares a PEAR package to be moved from svn.php.net to GitHub."
+    echo ""
+    echo "Usage:  ./package-to-git.sh package [username]"
+    echo ""
+    echo " package:  the PEAR package name"
+    echo " username:  the GitHub user name.  Only necessary if when using"
+    echo "            GitHub's https:// style interaction"
+    echo ""
     exit 1
 fi
 package=$1
