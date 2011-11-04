@@ -13,6 +13,24 @@ then
     username=$2
 fi
 
+
+# Quietly check:  are the dependencies installed?
+
+tmp=`svn --version`
+if [ "$?" -ne "0" ]
+then
+    echo "ERROR: svn must be installed and in your PATH."
+    exit 1
+fi
+
+tmp=`git svn --version`
+if [ "$?" -ne "0" ]
+then
+    echo "ERROR: git and git-svn must be installed and in your PATH."
+    exit 1
+fi
+
+
 firstrev=`svn log -q http://svn.php.net/repository/pear/packages/$package\
  |tail -n2\
  |head -n1\
