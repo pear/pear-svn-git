@@ -3,7 +3,7 @@
 if [ -z "$1" ]; then
     echo "Prepares a PEAR package to be moved from svn.php.net to GitHub."
     echo ""
-    echo "Usage:  ./package-to-git.sh package [username]"
+    echo "Usage:  ./1-from-svn.sh package [username]"
     echo ""
     echo " package:  the PEAR package name"
     echo " username:  the GitHub user name.  Only necessary if when using"
@@ -85,14 +85,13 @@ then
 fi
 
 
-echo "Visit https://github.com/pear/$package now"
-echo "or create it at"
-echo " https://github.com/organizations/pear/repositories/new"
-echo " + disable issues and wiki, and if needed add in a Service Hook to email the pear-csv mailing list"
-echo "then run"
-echo " $ git push -u origin master"
+# Voila!
+
 echo ""
-echo "When all went fine, remove it from svn:"
-echo " svn rm https://svn.php.net/repository/pear/packages/$package -m '$package moved to https://github.com/pear/$package'"
-#echo "Windows users may need to set SVN_EDITOR=notepad.exe"
-echo " svn propedit svn:externals https://svn.php.net/repository/pear/packages-all -m '$package moved to https://github.com/pear/$package'"
+echo "The package converted into git format."
+echo ""
+echo "The next two steps are..."
+echo "1) cd $package"
+echo "   look around in there to make sure things look right."
+echo "2) Run ../2-to-github.sh $package username password"
+echo ""
