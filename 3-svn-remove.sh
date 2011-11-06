@@ -11,10 +11,10 @@ if [ -z "$1" ]; then
 fi
 
 package=$1
-svn_repo=http://svn.php.net/repository/pear/packages
+svn_repo=https://svn.php.net/repository/pear/packages
 
 # Don't touch this variable!
-pear_package_repo=http://svn.php.net/repository/pear/packages
+pear_package_repo=https://svn.php.net/repository/pear/packages
 
 
 # Quietly check:  are the dependencies installed?
