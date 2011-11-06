@@ -90,6 +90,7 @@ fi
 # Voila!
 
 echo ""
+echo "------ PEAR MIGRATION RESULT ------"
 echo "The package has been converted to git format."
 echo ""
 echo "The next two steps are..."

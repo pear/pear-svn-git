@@ -51,4 +51,9 @@ then
 fi
 
 
+# Voila!
+
+echo ""
+echo "------ PEAR MIGRATION RESULT ------"
 echo "Congratulations!  The package migration process is complete."
+echo ""

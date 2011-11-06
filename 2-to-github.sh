@@ -113,6 +113,7 @@ fi
 # Voila!
 
 echo ""
+echo "------ PEAR MIGRATION RESULT ------"
 echo "The package has been pushed to GitHub."
 echo ""
 echo "There are two things left to do..."
