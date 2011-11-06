@@ -90,7 +90,7 @@ fi
 # Voila!
 
 echo ""
-echo "The package converted into git format."
+echo "The package has been converted to git format."
 echo ""
 echo "The next two steps are..."
 echo "1) cd $package"
