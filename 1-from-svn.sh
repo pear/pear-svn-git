@@ -18,6 +18,8 @@ then
     username=$2
 fi
 
+svn_repo=http://svn.php.net/repository/pear/packages
+
 
 # Quietly check:  are the dependencies installed?
 
@@ -36,13 +38,13 @@ then
 fi
 
 
-firstrev=`svn log -q http://svn.php.net/repository/pear/packages/$package\
+firstrev=`svn log -q $svn_repo/$package\
  |tail -n2\
  |head -n1\
  |awk '{split($0,a," "); print a[1]}'\
  |sed 's/r//'`
 echo "First SVN revision: $firstrev"
-git svn clone -s http://svn.php.net/repository/pear/packages/$package/\
+git svn clone -s $svn_repo/$package/\
  -r $firstrev\
  --authors-file=./authors.txt
 cd $package
@@ -60,7 +62,7 @@ fi
 if [ -f README ]
 then
     touch README
-    echo "This package is http://pear.php.net/package/$package and has been migrated from http://svn.php.net/repository/pear/packages/$package" >> README
+    echo "This package is http://pear.php.net/package/$package and has been migrated from $svn_repo/$package" >> README
     echo "" >> README
     echo "Please report all new issues via the PEAR bug tracker." >> README
     echo "" >> README
