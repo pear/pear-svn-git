@@ -38,8 +38,13 @@ fi
 
 if [ $svn_repo = $pear_package_repo ]
 then
-    echo "HI"
-    exit
+    echo ""
+    echo "When you hit ENTER, an editor will open svn:externals for packages-all."
+    echo "Please delete the line referring to $package."
+    echo "Then save and close the editor."
+    echo "(Press any key to continue.)"
+    echo ""
+    read -e
 
     svn propedit svn:externals https://svn.php.net/repository/pear/packages-all \
         -m "$package moved to https://github.com/pear/$package"
