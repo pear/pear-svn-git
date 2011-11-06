@@ -11,6 +11,10 @@ if [ -z "$1" ]; then
 fi
 
 package=$1
+svn_repo=http://svn.php.net/repository/pear/packages
+
+# Don't touch this variable!
+pear_package_repo=http://svn.php.net/repository/pear/packages
 
 
 # Quietly check:  are the dependencies installed?
@@ -23,7 +27,7 @@ then
 fi
 
 
-svn rm https://svn.php.net/repository/pear/packages/$package \
+svn rm $svn_repo/$package \
     -m "$package moved to https://github.com/pear/$package"
 if [ "$?" -ne "0" ]
 then
@@ -32,12 +36,19 @@ then
 fi
 
 
-svn propedit svn:externals https://svn.php.net/repository/pear/packages-all \
-    -m "$package moved to https://github.com/pear/$package"
-if [ "$?" -ne "0" ]
+if [ $svn_repo = $pear_package_repo ]
 then
-    echo "ERROR: could not edit properties of package-all."
-    exit 1
+    echo "HI"
+    exit
+
+    svn propedit svn:externals https://svn.php.net/repository/pear/packages-all \
+        -m "$package moved to https://github.com/pear/$package"
+    if [ "$?" -ne "0" ]
+    then
+        echo "ERROR: could not edit properties of package-all."
+        exit 1
+    fi
 fi
+
 
 echo "Congratulations!  The package migration process is complete."
