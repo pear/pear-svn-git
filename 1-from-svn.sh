@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
     echo "Usage:  ./1-from-svn.sh package [username]"
     echo ""
     echo " package:  the PEAR package name"
-    echo " username:  the GitHub user name.  Only necessary if when using"
+    echo " username:  your GitHub user name.  Only necessary if when using"
     echo "            GitHub's https:// style interaction"
     echo ""
     exit 1
