@@ -72,8 +72,9 @@ then
 
 
     # :TEMP: API currently lacks ability to assign repo to a team.
-    echo "The repository doesn't exist on GitHub yet." 
+    echo "The repository doesn't exist on GitHub yet."
     echo "Go create it at https://github.com/pear/"
+    echo "then re-run this script."
     exit 1
 
 
