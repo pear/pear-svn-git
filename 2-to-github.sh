@@ -1,22 +1,22 @@
 #! /bin/bash
 
-if [ -z "$3" ]; then
+if [ -z "$2" ]; then
     echo "Creates a repository on GitHub and pushes the PEAR package to it."
     echo ""
     echo "cd into the package's directory, then call this script."
     echo ""
-    echo "Usage:  ../2-to-github.sh package username password"
+    echo "Usage:  ../2-to-github.sh package username [password]"
     echo ""
     echo " package:  the PEAR package name"
     echo " username:  your GitHub user name"
-    echo " password:  your GitHub website password"
+    echo " password:  your GitHub website password (optional). If omitted,"
+    echo "            you will be prompted for it if actions require it."
     echo ""
     exit 1
 fi
 
 package=$1
 user=$2
-pass=$3
 api=https://api.github.com
 
 
@@ -76,6 +76,26 @@ then
     echo "Go create it at https://github.com/pear/"
     exit 1
 
+
+    if [ $3 ]
+    then
+        pass=$3
+        echo ""
+        echo "NOTICE: password is now optional."
+        echo "This script will ask for it interactively, if it is required."
+        echo ""
+    else
+        echo ""
+        echo -n "What is your GitHub website password? "
+        read -e -s pass
+        echo ""
+    fi
+
+    if [ -z $pass ]
+    then
+        echo "ERROR: actions taken require a password, but none was provided."
+        exit 1
+    fi
 
     post="{\"name\":\"$package\", \"has_issues\":false, \"has_wiki\":false}"
     response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
