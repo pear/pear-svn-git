@@ -35,23 +35,46 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-firstrev=`svn log -q $svn_repo/$package\
- |tail -n2\
- |head -n1\
- |awk '{split($0,a," "); print a[1]}'\
- |sed 's/r//'`
-echo "First SVN revision: $firstrev"
-git svn clone -s $svn_repo/$package/\
- -r $firstrev\
- --authors-file=./authors.txt
+# Determine first revision.
+
+result=`svn log -q $svn_repo/$package`
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not retrieve svn log for $package."
+    exit 1
+fi
+
+firstrev=`echo "$result" \
+    | tail -n2 \
+    | head -n1 \
+    | awk '{split($0,a," "); print a[1]}' \
+    | sed 's/r//'`
+
+
+# Clone the repository.
+
+git svn clone -s $svn_repo/$package -r $firstrev --authors-file=./authors.txt
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not clone $package."
+    exit 1
+fi
+
 cd $package
+
 git svn rebase
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not rebase $package."
+    exit 1
+fi
 
 if [ $username ] ; then
     git remote add origin https://$username@github.com/pear/$package.git
 else
     git remote add origin git@github.com:pear/$package.git
 fi 
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not add remote for $package."
+    exit 1
+fi
 
 
 # Create README file if necessary.
