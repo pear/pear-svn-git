@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ -z "$1" ] ; then
+if [ -z $1 ] ; then
     echo "Prepares a PEAR package to be moved from svn.php.net to GitHub."
     echo ""
     echo "Usage:  ./1-from-svn.sh package [username]"
@@ -23,13 +23,13 @@ svn_repo=http://svn.php.net/repository/pear/packages
 # Quietly check:  are the dependencies installed?
 
 tmp=`svn --version`
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: svn must be installed and in your PATH."
     exit 1
 fi
 
 tmp=`git svn --version`
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: git and git-svn must be installed and in your PATH."
     exit 1
 fi

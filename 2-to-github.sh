@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ -z "$2" ] ; then
+if [ -z $2 ] ; then
     echo "Creates a repository on GitHub and pushes the PEAR package to it."
     echo ""
     echo "cd into the package's directory, then call this script."
@@ -23,19 +23,19 @@ api=https://api.github.com
 # Quietly check:  are the dependencies installed?
 
 tmp=`curl --version`
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: curl must be installed and in your PATH."
     exit 1
 fi
 
 tmp=`svn --version`
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: svn must be installed and in your PATH."
     exit 1
 fi
 
 tmp=`git --version`
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: git must be installed and in your PATH."
     exit 1
 fi
@@ -57,7 +57,7 @@ fi
 # Does the repository exist on GitHub?
 
 response=`curl -s -S $api/repos/pear/$package`
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub search API."
     exit 1
 elif [[ $response =~ .*"Not Found".* ]] ; then
@@ -94,7 +94,7 @@ elif [[ $response =~ .*"Not Found".* ]] ; then
 
     post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
     response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
-    if [ "$?" -ne "0" ] ; then
+    if [ $? -ne 0 ] ; then
         echo "ERROR: curl had problem calling GitHub create API."
         exit 1
     elif [[ $response =~ .*"message".* ]] ; then
@@ -112,7 +112,7 @@ fi
 # Everything is ready.  Push the package up.
 
 git push -u origin master
-if [ "$?" -ne "0" ] ; then
+if [ $? -ne 0 ] ; then
     echo "ERROR: problem pushing $package to GitHub."
     exit 1
 fi
