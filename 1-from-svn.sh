@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ -z "$1" ]; then
+if [ -z "$1" ] ; then
     echo "Prepares a PEAR package to be moved from svn.php.net to GitHub."
     echo ""
     echo "Usage:  ./1-from-svn.sh package [username]"
@@ -13,8 +13,7 @@ if [ -z "$1" ]; then
 fi
 package=$1
 
-if [ $2 ]
-then
+if [ $2 ] ; then
     username=$2
 fi
 
@@ -24,15 +23,13 @@ svn_repo=http://svn.php.net/repository/pear/packages
 # Quietly check:  are the dependencies installed?
 
 tmp=`svn --version`
-if [ "$?" -ne "0" ]
-then
+if [ "$?" -ne "0" ] ; then
     echo "ERROR: svn must be installed and in your PATH."
     exit 1
 fi
 
 tmp=`git svn --version`
-if [ "$?" -ne "0" ]
-then
+if [ "$?" -ne "0" ] ; then
     echo "ERROR: git and git-svn must be installed and in your PATH."
     exit 1
 fi
@@ -50,8 +47,7 @@ git svn clone -s $svn_repo/$package/\
 cd $package
 git svn rebase
 
-if [ $username ]
-then
+if [ $username ] ; then
     git remote add origin https://$username@github.com/pear/$package.git
 else
     git remote add origin git@github.com:pear/$package.git
@@ -60,8 +56,7 @@ fi
 
 # Create README file if necessary.
 result=`ls README* 2> /dev/null | wc -l`
-if [ $result -eq 0 ]
-then
+if [ $result -eq 0 ] ; then
     touch README
     echo "This package is http://pear.php.net/package/$package and has been migrated from $svn_repo/$package" >> README
     echo "" >> README
