@@ -8,10 +8,15 @@
 
 // Get github.com packages.
 $github = array();
+$github_not_pushed = array();
 $result = file_get_contents('https://api.github.com/orgs/pear/repos');
 $result = json_decode($result);
 foreach ($result as $item) {
-    $github[] = $item->name;
+    if ($item->pushed_at) {
+        $github[] = $item->name;
+    } else {
+        $github_not_pushed[] = $item->name;
+    }
 }
 
 // Get svn.php.net packages.
@@ -31,6 +36,18 @@ foreach ($result as $item) {
     }
 }
 
+
+/*
+ * Show results.
+ */
+
+$anomalies = array_intersect($github_not_pushed, $packages);
+if ($anomalies) {
+    echo "---------------\n";
+    echo "Packages on github that have not had code copied from php.net:\n";
+    echo implode("\n", $anomalies);
+    echo "\n";
+}
 
 $anomalies = array_intersect($github, $packages);
 if ($anomalies) {
