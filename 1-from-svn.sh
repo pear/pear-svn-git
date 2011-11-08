@@ -59,7 +59,7 @@ fi
 
 
 # Create README file if necessary.
-if [ -f README ]
+if [ ! -f README ]
 then
     touch README
     echo "This package is http://pear.php.net/package/$package and has been migrated from $svn_repo/$package" >> README
