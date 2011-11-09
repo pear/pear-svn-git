@@ -1,20 +1,19 @@
 #! /bin/bash
 
-if [ -z "$1" ]; then
+if [ -z $1 ] ; then
     echo "Prepares a PEAR package to be moved from svn.php.net to GitHub."
     echo ""
     echo "Usage:  ./1-from-svn.sh package [username]"
     echo ""
     echo " package:  the PEAR package name"
-    echo " username:  the GitHub user name.  Only necessary if when using"
+    echo " username:  your GitHub user name.  Only necessary if when using"
     echo "            GitHub's https:// style interaction"
     echo ""
     exit 1
 fi
 package=$1
 
-if [ $2 ]
-then
+if [ $2 ] ; then
     username=$2
 fi
 
@@ -24,43 +23,63 @@ svn_repo=http://svn.php.net/repository/pear/packages
 # Quietly check:  are the dependencies installed?
 
 tmp=`svn --version`
-if [ "$?" -ne "0" ]
-then
+if [ $? -ne 0 ] ; then
     echo "ERROR: svn must be installed and in your PATH."
     exit 1
 fi
 
 tmp=`git svn --version`
-if [ "$?" -ne "0" ]
-then
+if [ $? -ne 0 ] ; then
     echo "ERROR: git and git-svn must be installed and in your PATH."
     exit 1
 fi
 
 
-firstrev=`svn log -q $svn_repo/$package\
- |tail -n2\
- |head -n1\
- |awk '{split($0,a," "); print a[1]}'\
- |sed 's/r//'`
-echo "First SVN revision: $firstrev"
-git svn clone -s $svn_repo/$package/\
- -r $firstrev\
- --authors-file=./authors.txt
-cd $package
-git svn rebase
+# Determine first revision.
 
-if [ $username ]
-then
+result=`svn log -q $svn_repo/$package`
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not retrieve svn log for $package."
+    exit 1
+fi
+
+firstrev=`echo "$result" \
+    | tail -n2 \
+    | head -n1 \
+    | awk '{split($0,a," "); print a[1]}' \
+    | sed 's/r//'`
+
+
+# Clone the repository.
+
+git svn clone -s $svn_repo/$package -r $firstrev --authors-file=./authors.txt
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not clone $package."
+    exit 1
+fi
+
+cd $package
+
+git svn rebase
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not rebase $package."
+    exit 1
+fi
+
+if [ $username ] ; then
     git remote add origin https://$username@github.com/pear/$package.git
 else
     git remote add origin git@github.com:pear/$package.git
 fi 
+if [ $? -ne 0 ] ; then
+    echo "ERROR: could not add remote for $package."
+    exit 1
+fi
 
 
 # Create README file if necessary.
-if [ -f README ]
-then
+result=`ls README* 2> /dev/null | wc -l`
+if [ $result -eq 0 ] ; then
     touch README
     echo "This package is http://pear.php.net/package/$package and has been migrated from $svn_repo/$package" >> README
     echo "" >> README
