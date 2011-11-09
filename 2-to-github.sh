@@ -54,6 +54,27 @@ if [ ! -d .git ] ; then
 fi
 
 
+# Obtain the GitHub website password.
+
+if [ $3 ] ; then
+    pass=$3
+    echo ""
+    echo "NOTICE: password is now optional."
+    echo "This script will ask for it interactively, if it is required."
+    echo ""
+else
+    echo ""
+    echo -n "What is your GitHub website password? "
+    read -e -s pass
+    echo ""
+fi
+
+if [ -z $pass ] ; then
+    echo "ERROR: actions taken require a password, but none was provided."
+    exit 1
+fi
+
+
 # Does the repository exist on GitHub?
 
 response=`curl -s -S $api/repos/pear/$package`
@@ -74,24 +95,6 @@ elif [[ $response =~ .*"Not Found".* ]] ; then
     exit 1
 
 
-    if [ $3 ] ; then
-        pass=$3
-        echo ""
-        echo "NOTICE: password is now optional."
-        echo "This script will ask for it interactively, if it is required."
-        echo ""
-    else
-        echo ""
-        echo -n "What is your GitHub website password? "
-        read -e -s pass
-        echo ""
-    fi
-
-    if [ -z $pass ] ; then
-        echo "ERROR: actions taken require a password, but none was provided."
-        exit 1
-    fi
-
     post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
     response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
     if [ $? -ne 0 ] ; then
@@ -109,6 +112,20 @@ elif [[ $response =~ .*"message".* ]] ; then
 fi
 
 
+# Create hook to email pear-cvs list when changes pushed to GitHub.
+
+post="{\"name\":\"email\", \"config\":{\"address\":\"pear-cvs@lists.php.net\", \"send_from_author\":true}}"
+response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
+if [ $? -ne 0 ] ; then
+    echo "ERROR: curl had problem calling GitHub hooks API."
+    exit 1
+elif [[ $response =~ .*"errors".* ]] ; then
+    # The API returned some other error.
+    echo "GitHub API hooks ERROR: $response"
+    exit 1
+fi
+
+
 # Everything is ready.  Push the package up.
 
 git push -u origin master
@@ -116,9 +133,6 @@ if [ $? -ne 0 ] ; then
     echo "ERROR: problem pushing $package to GitHub."
     exit 1
 fi
-
-
-# :TODO:  Create hook to email pear-cvs@php.net.
 
 
 # Voila!
