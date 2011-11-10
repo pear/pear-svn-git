@@ -117,7 +117,7 @@ fi
 post="{\"name\":\"email\", \"config\":{\"address\":\"pear-cvs@lists.php.net\", \"send_from_author\":true}}"
 response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
-    echo "ERROR: curl had problem calling GitHub hooks API."
+    echo "ERROR: curl had problem calling GitHub email hooks API."
     exit 1
 elif [[ $response =~ .*"errors".* ]] ; then
     # The API returned some other error.
