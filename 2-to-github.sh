@@ -112,12 +112,23 @@ elif [[ $response =~ .*"message".* ]] ; then
 fi
 
 
-# Create hook to email pear-cvs list when changes pushed to GitHub.
+# Create hooks.
 
 post="{\"name\":\"email\", \"config\":{\"address\":\"pear-cvs@lists.php.net\", \"send_from_author\":true}}"
 response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub hooks API."
+    exit 1
+elif [[ $response =~ .*"errors".* ]] ; then
+    # The API returned some other error.
+    echo "GitHub API hooks ERROR: $response"
+    exit 1
+fi
+
+post="{\"name\":\"web\", \"config\":{\"url\":\"http://test.pear.php.net:8080/github-webhook/\"}}"
+response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
+if [ $? -ne 0 ] ; then
+    echo "ERROR: curl had problem calling GitHub web hooks API."
     exit 1
 elif [[ $response =~ .*"errors".* ]] ; then
     # The API returned some other error.
