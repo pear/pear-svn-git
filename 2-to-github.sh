@@ -43,7 +43,7 @@ fi
 
 # Is this script being called from a valid location?
 
-if [[ ! $PWD = */$package ]] ; then
+if [[ ! $PWD == */$package ]] ; then
     echo "ERROR: cd to the $package directory before calling this script."
     exit 1
 fi
@@ -81,7 +81,7 @@ response=`curl -s -S $api/repos/pear/$package`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub search API."
     exit 1
-elif [[ $response =~ .*"Not Found".* ]] ; then
+elif [[ $response == "*Not Found*" ]] ; then
     # Repository not there yet; create it.
 
 
@@ -97,15 +97,16 @@ elif [[ $response =~ .*"Not Found".* ]] ; then
 
     post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
     response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
+
     if [ $? -ne 0 ] ; then
         echo "ERROR: curl had problem calling GitHub create API."
         exit 1
-    elif [[ $response =~ .*"message".* ]] ; then
+    elif [[ $response == *message* ]] ; then
         # The API returned some other error.
         echo "GitHub API create ERROR: $response"
         exit 1
     fi
-elif [[ $response =~ .*"message".* ]] ; then
+elif [[ $response == *message* ]] ; then
     # The API returned some other error.
     echo "GitHub API search ERROR: $response"
     exit 1
@@ -119,7 +120,7 @@ response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub email hooks API."
     exit 1
-elif [[ $response =~ .*"errors".* ]] ; then
+elif [[ $response == *errors* ]] ; then
     # The API returned some other error.
     echo "GitHub API hooks ERROR: $response"
     exit 1
@@ -130,7 +131,7 @@ response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub web hooks API."
     exit 1
-elif [[ $response =~ .*"errors".* ]] ; then
+elif [[ $response == *errors* ]] ; then
     # The API returned some other error.
     echo "GitHub API hooks ERROR: $response"
     exit 1
