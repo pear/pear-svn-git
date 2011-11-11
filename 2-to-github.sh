@@ -19,7 +19,6 @@ package=$1
 user=$2
 api=https://api.github.com
 
-
 # Quietly check:  are the dependencies installed?
 
 tmp=`curl --version`
@@ -43,7 +42,7 @@ fi
 
 # Is this script being called from a valid location?
 
-if [[ ! $PWD =~ .*/$package$ ]] ; then
+if [[ ! $PWD == */$package ]] ; then
     echo "ERROR: cd to the $package directory before calling this script."
     exit 1
 fi
@@ -64,7 +63,7 @@ if [ $3 ] ; then
     echo ""
 else
     echo ""
-    echo -n "What is your GitHub website password? "
+    echo -n "What is your GitHub website/API password? "
     read -e -s pass
     echo ""
 fi
@@ -74,21 +73,26 @@ if [ -z $pass ] ; then
     exit 1
 fi
 
+curl_args=''
+if [ $http_proxy ] ; then
+    curl_args="--proxy $http_proxy"
+fi
 
 # Does the repository exist on GitHub?
 
-response=`curl -s -S $api/repos/pear/$package`
+response=`curl $curl_args -s -S $api/repos/pear/$package`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub search API."
+    echo $response
     exit 1
-elif [[ $response =~ .*"Not Found".* ]] ; then
+elif [[ $response == *"Not Found"* ]] ; then
     # Repository not there yet; create it.
 
 
     # :TEMP: API currently lacks ability to assign repo to a team.
     echo "The repository doesn't exist on GitHub yet.  Please do the following:"
     echo ""
-    echo "1) Go create it at https://github.com/pear/"
+    echo "1) Go create it at https://github.com/organizations/pear/"
     echo "   When doing so, disable 'wikis' and 'issues'"
     echo ""
     echo "2) Re-run this script"
@@ -96,16 +100,17 @@ elif [[ $response =~ .*"Not Found".* ]] ; then
 
 
     post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
-    response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
+    response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
+
     if [ $? -ne 0 ] ; then
         echo "ERROR: curl had problem calling GitHub create API."
         exit 1
-    elif [[ $response =~ .*"message".* ]] ; then
+    elif [[ $response == *message* ]] ; then
         # The API returned some other error.
         echo "GitHub API create ERROR: $response"
         exit 1
     fi
-elif [[ $response =~ .*"message".* ]] ; then
+elif [[ $response == *message* ]] ; then
     # The API returned some other error.
     echo "GitHub API search ERROR: $response"
     exit 1
@@ -115,22 +120,22 @@ fi
 # Create hooks.
 
 post="{\"name\":\"email\", \"config\":{\"address\":\"pear-cvs@lists.php.net\", \"send_from_author\":true}}"
-response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
+response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub email hooks API."
     exit 1
-elif [[ $response =~ .*"errors".* ]] ; then
+elif [[ $response == *errors* ]] ; then
     # The API returned some other error.
     echo "GitHub API hooks ERROR: $response"
     exit 1
 fi
 
 post="{\"name\":\"web\", \"config\":{\"url\":\"http://test.pear.php.net:8080/github-webhook/\"}}"
-response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
+response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub web hooks API."
     exit 1
-elif [[ $response =~ .*"errors".* ]] ; then
+elif [[ $response == *errors* ]] ; then
     # The API returned some other error.
     echo "GitHub API hooks ERROR: $response"
     exit 1
