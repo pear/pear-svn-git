@@ -75,9 +75,20 @@ if [ -z $pass ] ; then
 fi
 
 
+# Workaround for some curl installs not acknowledging proxy.
+
+if [ $HTTPS_PROXY ] ; then
+    curl_args="--proxy $HTTPS_PROXY"
+elif [ $http_proxy ] ; then
+    curl_args="--proxy $http_proxy"
+else
+    curl_args=
+fi
+
+
 # Does the repository exist on GitHub?
 
-response=`curl -s -S $api/repos/pear/$package`
+response=`curl $curl_args -s -S $api/repos/pear/$package`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub search API."
     exit 1
@@ -85,7 +96,7 @@ elif [[ $response == *'"Not Found"'* ]] ; then
     # Repository not there yet; create it in the pear-dev team.
 
     post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"team_id\":83068, \"has_issues\":false, \"has_wiki\":false}"
-    response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
+    response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
     if [ $? -ne 0 ] ; then
         echo "ERROR: curl had problem calling GitHub create API."
         exit 1
@@ -104,7 +115,7 @@ fi
 # Create hooks.
 
 post="{\"name\":\"email\", \"config\":{\"address\":\"pear-cvs@lists.php.net\", \"send_from_author\":true}}"
-response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
+response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub email hooks API."
     exit 1
@@ -115,7 +126,7 @@ elif [[ $response == *'"errors"'* ]] ; then
 fi
 
 post="{\"name\":\"web\", \"config\":{\"url\":\"http://test.pear.php.net:8080/github-webhook/\"}}"
-response=`curl -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
+response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/repos/pear/$package/hooks`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub web hooks API."
     exit 1
