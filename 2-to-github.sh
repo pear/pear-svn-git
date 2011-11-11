@@ -43,7 +43,7 @@ fi
 
 # Is this script being called from a valid location?
 
-if [[ ! $PWD =~ .*/$package$ ]] ; then
+if [[ ! $PWD = */$package ]] ; then
     echo "ERROR: cd to the $package directory before calling this script."
     exit 1
 fi
