@@ -99,7 +99,7 @@ elif [[ $response == *"Not Found"* ]] ; then
     exit 1
 
 
-    post="{\"name\":\"pear/$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
+    post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
     response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
 
     if [ $? -ne 0 ] ; then
