@@ -63,7 +63,7 @@ if [ $3 ] ; then
     echo ""
 else
     echo ""
-    echo -n "What is your GitHub website password, so we can all the github API? "
+    echo -n "What is your GitHub website/API password? "
     read -e -s pass
     echo ""
 fi
@@ -99,9 +99,8 @@ elif [[ $response == *"Not Found"* ]] ; then
     exit 1
 
 
-    post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
+    post="{\"name\":\"pear/$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
     response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
-
 
     if [ $? -ne 0 ] ; then
         echo "ERROR: curl had problem calling GitHub create API."
