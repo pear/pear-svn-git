@@ -63,7 +63,7 @@ if [ $3 ] ; then
     echo ""
 else
     echo ""
-    echo -n "What is your GitHub website password? "
+    echo -n "What is your GitHub website password, so we can all the github API? "
     read -e -s pass
     echo ""
 fi
@@ -92,7 +92,7 @@ elif [[ $response == *"Not Found"* ]] ; then
     # :TEMP: API currently lacks ability to assign repo to a team.
     echo "The repository doesn't exist on GitHub yet.  Please do the following:"
     echo ""
-    echo "1) Go create it at https://github.com/pear/"
+    echo "1) Go create it at https://github.com/organizations/pear/"
     echo "   When doing so, disable 'wikis' and 'issues'"
     echo ""
     echo "2) Re-run this script"
