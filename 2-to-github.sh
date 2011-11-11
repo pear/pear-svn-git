@@ -82,20 +82,9 @@ if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub search API."
     exit 1
 elif [[ $response =~ .*"Not Found".* ]] ; then
-    # Repository not there yet; create it.
+    # Repository not there yet; create it in the pear-dev team.
 
-
-    # :TEMP: API currently lacks ability to assign repo to a team.
-    echo "The repository doesn't exist on GitHub yet.  Please do the following:"
-    echo ""
-    echo "1) Go create it at https://github.com/pear/"
-    echo "   When doing so, disable 'wikis' and 'issues'"
-    echo ""
-    echo "2) Re-run this script"
-    exit 1
-
-
-    post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
+    post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"team_id\":83068, \"has_issues\":false, \"has_wiki\":false}"
     response=`curl -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
     if [ $? -ne 0 ] ; then
         echo "ERROR: curl had problem calling GitHub create API."
