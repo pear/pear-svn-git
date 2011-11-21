@@ -19,6 +19,7 @@ package=$1
 user=$2
 api=https://api.github.com
 
+
 # Quietly check:  are the dependencies installed?
 
 tmp=`curl --version`
@@ -63,7 +64,7 @@ if [ $3 ] ; then
     echo ""
 else
     echo ""
-    echo -n "What is your GitHub website/API password? "
+    echo -n "What is your GitHub website password? "
     read -e -s pass
     echo ""
 fi
@@ -73,10 +74,6 @@ if [ -z $pass ] ; then
     exit 1
 fi
 
-curl_args=''
-if [ $http_proxy ] ; then
-    curl_args="--proxy $http_proxy"
-fi
 
 # Workaround for some curl installs not acknowledging proxy.
 
@@ -94,30 +91,7 @@ fi
 response=`curl $curl_args -s -S $api/repos/pear/$package`
 if [ $? -ne 0 ] ; then
     echo "ERROR: curl had problem calling GitHub search API."
-    echo $response
     exit 1
-<<<<<<< HEAD
-elif [[ $response == *"Not Found"* ]] ; then
-    # Repository not there yet; create it.
-
-
-    # :TEMP: API currently lacks ability to assign repo to a team.
-    echo "The repository doesn't exist on GitHub yet.  Please do the following:"
-    echo ""
-    echo "1) Go create it at https://github.com/organizations/pear/"
-    echo "   When doing so, disable 'wikis' and 'issues'"
-    echo ""
-    echo "2) Re-run this script"
-    exit 1
-
-
-    post="{\"name\":\"$package\", \"homepage\":\"http://pear.php.net/package/$package\", \"has_issues\":false, \"has_wiki\":false}"
-    response=`curl $curl_args -s -S -u "$user:$pass" -d "$post" $api/orgs/pear/repos`
-
-    if [ $? -ne 0 ] ; then
-        echo "ERROR: curl had problem calling GitHub create API."
-        exit 1
-    elif [[ $response == *message* ]] ; then
 elif [[ $response == *'"Not Found"'* ]] ; then
     # Repository not there yet; create it in the pear-dev team.
 
