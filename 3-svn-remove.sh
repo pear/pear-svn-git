@@ -35,18 +35,42 @@ fi
 
 
 if [ $svn_repo = $pear_package_repo ] ; then
-    echo ""
-    echo "When you hit ENTER, an editor will open svn:externals for packages-all."
-    echo "Please delete the line referring to $package."
-    echo "Then save and close the editor."
-    echo "(Press any key to continue.)"
-    echo ""
-    read -e
-
-    svn propedit svn:externals https://svn.php.net/repository/pear/packages-all \
-        -m "$package moved to https://github.com/pear/$package"
+    if [ -d packages-all ] ; then
+        svn up packages-all --depth empty
+    else
+        svn checkout https://svn.php.net/repository/pear/packages-all --depth empty
+    fi
     if [ $? -ne 0 ] ; then
-        echo "ERROR: could not edit properties of package-all."
+        echo "ERROR: could not checkout package-all."
+        exit 1
+    fi
+
+    svn propget svn:externals packages-all > propget.txt
+    if [ $? -ne 0 ] ; then
+        echo "ERROR: could not get properties of package-all."
+        rm -f propget.txt
+        exit 1
+    fi
+
+    sed "/$package$/d" propget.txt > propset.txt
+    if [ $? -ne 0 ] ; then
+        echo "ERROR: could not modify propget.txt."
+        rm -f propget.txt propset.txt
+        exit 1
+    fi
+
+    svn propset svn:externals packages-all -F propset.txt
+    if [ $? -ne 0 ] ; then
+        echo "ERROR: could not set properties of package-all."
+        rm -f propget.txt propset.txt
+        exit 1
+    fi
+
+    rm -f propget.txt propset.txt
+
+    svn commit -m "$package moved to https://github.com/pear/$package" packages-all
+    if [ $? -ne 0 ] ; then
+        echo "ERROR: could not commit package-all."
         exit 1
     fi
 fi
