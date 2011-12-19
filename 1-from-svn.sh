@@ -17,7 +17,7 @@ if [ $2 ] ; then
     username=$2
 fi
 
-svn_repo=http://svn.php.net/repository/pear/packages
+svn_repo=https://svn.php.net/repository/pear/packages
 
 
 # Quietly check:  are the dependencies installed?
