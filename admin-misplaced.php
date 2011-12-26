@@ -36,22 +36,28 @@ foreach ($result as $item) {
     }
 }
 
-$data = file_get_contents('http://pear.php.net/qa/packages_orphan.php');
-$config = array('indent' => TRUE,
-                'output-xhtml' => true,
-                'numeric-entities' => true,
-                'wrap' => 200);
-
-$tidy = tidy_parse_string($data, $config);
-$tidy->cleanRepair();
-
-$document = simplexml_load_string((string)$tidy);
-$document->registerXPathNamespace('xhtml', "http://www.w3.org/1999/xhtml");
-$qa_package_links = $document->xpath('//xhtml:tr[2]/xhtml:td[1]/xhtml:ul/xhtml:li/xhtml:a');
+// Get orphaned packages, if possible.
 $orphan_packages = array();
-foreach ($qa_package_links as $node) {
-    $orphan_packages[] = (string)$node;
+if (!function_exists('tidy_parse_string')) {
+    echo "Skipping orphaned package check because tidy is not installed.\n";
+} else {
+    $data = file_get_contents('http://pear.php.net/qa/packages_orphan.php');
+    $config = array('indent' => TRUE,
+                    'output-xhtml' => true,
+                    'numeric-entities' => true,
+                    'wrap' => 200);
+
+    $tidy = tidy_parse_string($data, $config);
+    $tidy->cleanRepair();
+
+    $document = simplexml_load_string((string)$tidy);
+    $document->registerXPathNamespace('xhtml', "http://www.w3.org/1999/xhtml");
+    $qa_package_links = $document->xpath('//xhtml:tr[2]/xhtml:td[1]/xhtml:ul/xhtml:li/xhtml:a');
+    foreach ($qa_package_links as $node) {
+        $orphan_packages[] = (string)$node;
+    }
 }
+
 /*
  * Show results.
  */
