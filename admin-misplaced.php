@@ -36,9 +36,7 @@ foreach ($result as $item) {
     }
 }
 
-//$data = file_get_contents('http://pear.php.net/qa/packages_orphan.php');
-// TODO: Fix pearweb to make that list public :)
-$data = file_get_contents('qa.html');
+$data = file_get_contents('http://pear.php.net/qa/packages_orphan.php');
 $config = array('indent' => TRUE,
                 'output-xhtml' => true,
                 'numeric-entities' => true,
