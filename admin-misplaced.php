@@ -36,7 +36,22 @@ foreach ($result as $item) {
     }
 }
 
+$data = file_get_contents('http://pear.php.net/qa/packages_orphan.php');
+$config = array('indent' => TRUE,
+                'output-xhtml' => true,
+                'numeric-entities' => true,
+                'wrap' => 200);
 
+$tidy = tidy_parse_string($data, $config);
+$tidy->cleanRepair();
+
+$document = simplexml_load_string((string)$tidy);
+$document->registerXPathNamespace('xhtml', "http://www.w3.org/1999/xhtml");
+$qa_package_links = $document->xpath('//xhtml:tr[2]/xhtml:td[1]/xhtml:ul/xhtml:li/xhtml:a');
+$orphan_packages = array();
+foreach ($qa_package_links as $node) {
+    $orphan_packages[] = (string)$node;
+}
 /*
  * Show results.
  */
@@ -77,6 +92,14 @@ $anomalies = array_diff($packages_all, $packages);
 if ($anomalies) {
     echo "---------------\n";
     echo "Packages on php.net in packages-all but not in packages:\n";
+    echo implode("\n", $anomalies);
+    echo "\n";
+}
+
+$anomalies = array_diff($orphan_packages, $github);
+if ($anomalies) {
+    echo "---------------\n";
+    echo "Orphan packages not on github:\n";
     echo implode("\n", $anomalies);
     echo "\n";
 }
