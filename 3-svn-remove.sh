@@ -61,8 +61,12 @@ if [ $svn_repo = $pear_package_repo ] ; then
 
     svn propset svn:externals packages-all -F propset.txt
     if [ $? -ne 0 ] ; then
+        echo ""
         echo "ERROR: could not set properties of package-all."
-        rm -f propget.txt propset.txt
+        echo "Examine the propget.txt file, then run:"
+        echo "svn propset svn:externals packages-all -F propset.txt"
+        echo ""
+        rm -f propget.txt
         exit 1
     fi
 
