@@ -53,9 +53,36 @@ if (!function_exists('tidy_parse_string')) {
     $document = simplexml_load_string((string)$tidy);
     $document->registerXPathNamespace('xhtml', "http://www.w3.org/1999/xhtml");
     $qa_package_links = $document->xpath('//xhtml:tr[2]/xhtml:td[1]/xhtml:ul/xhtml:li/xhtml:a');
+
     foreach ($qa_package_links as $node) {
         $orphan_packages[] = (string)$node;
     }
+}
+
+$jenkins_qa_packages = array();
+$document = simplexml_load_file('http://test.pear.php.net:8080/view/Unmaintained%20QA%20packages/rssAll');
+$document->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
+$links = $document->xpath('//atom:link');
+
+foreach ($links as $link) {
+    // Example content:
+    // http://test.pear.php.net:8080/job/File_SearchReplace/11/
+    list(,,,$jenkins_qa_package) = explode("/", (string)$link["href"]);
+
+    $jenkins_qa_packages[] = $jenkins_qa_package;
+}
+
+$jenkins_packages = array();
+$document = simplexml_load_file('http://test.pear.php.net:8080/rssAll');
+$document->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
+$links = $document->xpath('//atom:link');
+
+foreach ($links as $link) {
+    // Example content:
+    // http://test.pear.php.net:8080/job/File_SearchReplace/11/
+    list(,,,$jenkins_package) = explode("/", (string)$link["href"]);
+
+    $jenkins_packages[] = $jenkins_package;
 }
 
 /*
@@ -106,6 +133,31 @@ $anomalies = array_diff($orphan_packages, $github);
 if ($anomalies) {
     echo "---------------\n";
     echo "Orphan packages not on github:\n";
+    echo implode("\n", $anomalies);
+    echo "\n";
+}
+
+
+$anomalies = array_diff($orphan_packages, $jenkins_qa_packages);
+if ($anomalies) {
+    echo "---------------\n";
+    echo "Orphan packages not on jenkins' unmaintained list:\n";
+    echo implode("\n", $anomalies);
+    echo "\n";
+}
+
+$anomalies = array_diff($github, $jenkins_packages);
+if ($anomalies) {
+    echo "---------------\n";
+    echo "Github packages not on jenkins:\n";
+    echo implode("\n", $anomalies);
+    echo "\n";
+}
+
+$anomalies = array_diff($packages_all, $jenkins_packages);
+if ($anomalies) {
+    echo "---------------\n";
+    echo "PEAR packages not on jenkins:\n";
     echo implode("\n", $anomalies);
     echo "\n";
 }
