@@ -56,10 +56,11 @@ $links = $document->xpath('//atom:link');
 foreach ($links as $link) {
     // Example content:
     // http://test.pear.php.net:8080/job/File_SearchReplace/11/
-    list(,,,$jenkins_qa_package) = explode("/", (string)$link["href"]);
+    list(,,,,$jenkins_qa_package) = explode("/", (string)$link["href"]);
 
     $jenkins_qa_packages[] = $jenkins_qa_package;
 }
+$jenkins_qa_packages = array_unique($jenkins_qa_packages);
 
 $jenkins_packages = array();
 $document = simplexml_load_file('http://test.pear.php.net:8080/rssAll');
@@ -69,19 +70,19 @@ $links = $document->xpath('//atom:link');
 foreach ($links as $link) {
     // Example content:
     // http://test.pear.php.net:8080/job/File_SearchReplace/11/
-    list(,,,$jenkins_package) = explode("/", (string)$link["href"]);
+    list(,,,,$jenkins_package) = explode("/", (string)$link["href"]);
 
     $jenkins_packages[] = $jenkins_package;
 }
-
+$jenkins_packages = array_unique($jenkins_packages);
 /*
  * Show results.
  */
 
-$anomalies = array_diff($orphan_packages, $jenkins_qa_packages);
+$anomalies = array_diff(array_intersect($jenkins_packages, $orphan_packages), $jenkins_qa_packages);
 if ($anomalies) {
     echo "---------------\n";
-    echo "Orphan packages not on jenkins' unmaintained list:\n";
+    echo "Orphan packages not on jenkins' unmaintained list, but with a build:\n";
     echo implode("\n", $anomalies);
     echo "\n";
 }
