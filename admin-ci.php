@@ -99,6 +99,7 @@ if ($anomalies) {
 
 $anomalies = array_diff(array_intersect($jenkins_packages, $orphan_packages), $jenkins_qa_packages);
 if ($anomalies) {
+    sort($anomalies);
     echo "---------------\n";
     echo "Orphan packages not on jenkins' unmaintained list, but with a build:\n";
     echo implode("\n", $anomalies);
