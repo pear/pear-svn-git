@@ -79,13 +79,7 @@ $jenkins_packages = array_unique($jenkins_packages);
  * Show results.
  */
 
-$anomalies = array_diff(array_intersect($jenkins_packages, $orphan_packages), $jenkins_qa_packages);
-if ($anomalies) {
-    echo "---------------\n";
-    echo "Orphan packages not on jenkins' unmaintained list, but with a build:\n";
-    echo implode("\n", $anomalies);
-    echo "\n";
-}
+
 
 $anomalies = array_diff($github, $jenkins_packages);
 if ($anomalies) {
@@ -99,6 +93,14 @@ $anomalies = array_diff($packages, $jenkins_packages);
 if ($anomalies) {
     echo "---------------\n";
     echo "PEAR packages not on jenkins:\n";
+    echo implode("\n", $anomalies);
+    echo "\n";
+}
+
+$anomalies = array_diff(array_intersect($jenkins_packages, $orphan_packages), $jenkins_qa_packages);
+if ($anomalies) {
+    echo "---------------\n";
+    echo "Orphan packages not on jenkins' unmaintained list, but with a build:\n";
     echo implode("\n", $anomalies);
     echo "\n";
 }
