@@ -33,7 +33,7 @@ $result = preg_split('/[\r\n]+/', $result);
 foreach ($result as $item) {
     if (preg_match('/^.* ([a-z0-9_]+)$/i', $item, $atom)) {
         $packages_all[] = $atom[1];
-    }a
+    }
 }
 
 // Get orphaned packages, if possible.
