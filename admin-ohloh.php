@@ -16,15 +16,20 @@ $document = $client->getAll(array($client, 'getProjectEnlistments'));
 
 $enlistments = array();
 foreach ($document->result->enlistment as $enlistment) {
-    $enlistments[] = $enlistment->url;
+    $enlistments[] = trim((string)$enlistment->repository->url);
 }
 
 $github = array();
 $result = file_get_contents('https://api.github.com/orgs/pear/repos');
 $result = json_decode($result);
 foreach ($result as $item) {
-    $github[] = 'git://github.com/pear/' . $item->name . ".git";
+    $github[] = trim('git://github.com/pear/' . trim($item->name) . ".git");
 }
 
-print "Things not counted on Ohloh, Oh no!\n:";
-print_r(array_diff($github, $enlistments));
+print "Things not counted on Ohloh, Oh no!\n";
+foreach ($github as $gh) {
+    if (!in_array($gh, $enlistments)) {
+        print $gh . "\n";
+    }
+}
+
