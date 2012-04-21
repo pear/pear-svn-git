@@ -311,3 +311,5 @@ slaws = Simon Laws <slaws@php.net>
 jimw = Jim W <jimw@php.net>
 dams = Damien_Seguy <dams@php.net>
 wez = Wez Furlong <wez@php.net>
+ivonascimento = Ivo Nascimento <iannsp@gmail.com>
+janpascal = Jan-Pascal van Best <janpascal@php.net>
