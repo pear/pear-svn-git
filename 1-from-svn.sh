@@ -70,7 +70,7 @@ if [ $username ] ; then
     git remote add origin https://$username@github.com/pear/$package.git
 else
     git remote add origin git@github.com:pear/$package.git
-fi 
+fi
 if [ $? -ne 0 ] ; then
     echo "ERROR: could not add remote for $package."
     exit 1

@@ -30,6 +30,6 @@ echo <<<EOF
 Now issue the following commands:
     svn up packages-all --depth empty
     svn propset svn:externals packages-all -F propfix.txt
-    svn commit -m 'The latest externals.' packages-all 
+    svn commit -m 'The latest externals.' packages-all
 
 EOF;
