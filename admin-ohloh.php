@@ -5,7 +5,7 @@
  * To quickly obtain
  * $ git clone git://github.com/CloCkWeRX/Ohloh.git && cd Ohloh && pear install package.xml
  *
- * @see https://github.com/CloCkWeRX/Ohloh 
+ * @see https://github.com/CloCkWeRX/Ohloh
  */
 require_once 'Ohloh.php';
 
