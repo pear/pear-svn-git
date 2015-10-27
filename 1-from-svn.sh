@@ -52,7 +52,7 @@ firstrev=`echo "$result" \
 
 # Clone the repository.
 
-git svn clone -s $svn_repo/$package -r $firstrev --authors-file=./authors.txt
+git svn clone -s $svn_repo/$package -r $firstrev:HEAD --authors-file=./authors.txt
 if [ $? -ne 0 ] ; then
     echo "ERROR: could not clone $package."
     exit 1
